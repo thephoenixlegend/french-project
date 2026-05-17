@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La France — Une Magie Éternelle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bleu: #002395;
+    --rouge: #ED2939;
+    --gold: #C9A84C;
+    --cream: #FAF7F0;
+    --ink: #1A1209;
+    --muted: #6B5E45;
+    --light-gold: #F0E4C0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+  }
+
+  .tricolor-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(to right, var(--bleu) 33.33%, #fff 33.33% 66.66%, var(--rouge) 66.66%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    padding: 2rem;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    font-weight: 700;
+    line-height: 0.9;
+    color: #fff;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.6s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.72);
+    margin-top: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.4);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.4s forwards;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── ORNAMENT ── */
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.4rem;
+    letter-spacing: 0.6em;
+    margin: 0.5rem 0;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--bleu); }
+
+  .divider {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 1.8rem 0;
+  }
+
+  /* ── PARIS HERO CARD ── */
+  .paris-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .paris-text p {
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .paris-text p + p { margin-top: 1.2rem; }
+
+  .eiffel-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .eiffel-glow {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  /* ── PILLARS GRID ── */
+  .pillars-full { max-width: 100%; background: var(--ink); padding: 6rem 2rem; }
+  .pillars-inner { max-width: 1100px; margin: 0 auto; }
+  .pillars-inner .section-title { color: #fff; }
+  .pillars-inner .section-label { color: var(--gold); }
+  .pillars-inner .divider { background: linear-gradient(to right, var(--gold), transparent); }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 3rem;
+  }
+
+  .pillar-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s ease;
+    cursor: default;
+  }
+
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .pillar-card:hover { background: rgba(255,255,255,0.07); }
+  .pillar-card:hover::before { transform: scaleX(1); }
+
+  .pillar-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0.8rem;
+  }
+
+  .pillar-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  /* ── CUISINE SECTION ── */
+  .cuisine-section { background: var(--light-gold); padding: 6rem 2rem; max-width: 100%; }
+  .cuisine-inner { max-width: 1100px; margin: 0 auto; }
+
+  .cuisine-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .dish-card {
+    background: var(--cream);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 1.8rem 1.4rem;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .dish-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(26,18,9,0.12); }
+
+  .dish-icon { font-size: 2.8rem; margin-bottom: 1rem; display: block; }
+
+  .dish-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .dish-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ── QUOTE ── */
+  .quote-section {
+    padding: 6rem 2rem;
+    text-align: center;
+    background: var(--bleu);
+    max-width: 100%;
+  }
+
+  .big-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 3rem);
+    font-style: italic;
+    font-weight: 400;
+    color: #fff;
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .quote-author {
+    margin-top: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem;
+    color: rgba(255,255,255,0.1);
+    line-height: 0.6;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  /* ── REGIONS ── */
+  .regions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .region-card {
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 1.8rem;
+    background: rgba(201,168,76,0.04);
+  }
+
+  .region-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .region-sub {
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .region-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── ARTS ── */
+  .arts-full { background: var(--rouge); padding: 6rem 2rem; max-width: 100%; }
+  .arts-inner { max-width: 1100px; margin: 0 auto; }
+  .arts-inner .section-title { color: #fff; }
+  .arts-inner .section-label { color: rgba(255,255,255,0.6); }
+  .arts-inner .divider { background: linear-gradient(to right, rgba(255,255,255,0.5), transparent); }
+
+  .arts-row {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .art-pill {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.7rem 1.5rem;
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+    cursor: default;
+  }
+
+  .art-pill:hover { background: rgba(255,255,255,0.22); }
+
+  .arts-figures {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .figure-card {
+    background: rgba(0,0,0,0.15);
+    padding: 2rem;
+  }
+
+  .figure-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+
+  .figure-field {
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.9rem;
+    display: block;
+  }
+
+  .figure-note {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.65);
+    font-style: italic;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .footer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-sub {
+    font-size: 0.85rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 2rem;
+  }
+
+  .flag-bar {
+    width: 60px;
+    height: 4px;
+    margin: 0 auto;
+    background: linear-gradient(to right, var(--bleu) 33.33%, #fff 33.33% 66.66%, var(--rouge) 66.66%);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 0.8; transform: scaleY(1.15); }
+  }
+
+  @keyframes starFloat {
+    0%, 100% { opacity: 0.4; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-12px); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(36px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── HISTORY TIMELINE ── */
+  .history-full { background: #0E0A03; padding: 7rem 2rem; max-width: 100%; }
+  .history-inner { max-width: 1100px; margin: 0 auto; }
+  .history-inner .section-title { color: #fff; }
+  .history-inner .section-label { color: var(--gold); }
+  .history-inner .divider { background: linear-gradient(to right, var(--gold), transparent); }
+
+  .timeline {
+    position: relative;
+    margin-top: 4rem;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold) 8%, var(--gold) 92%, transparent);
+  }
+
+  .timeline-era {
+    position: relative;
+    margin-bottom: 3.5rem;
+    padding-left: 2.5rem;
+  }
+
+  .timeline-era::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 0.55rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+  }
+
+  .era-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .era-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.6rem;
+  }
+
+  .era-desc {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.52);
+    font-weight: 300;
+    max-width: 720px;
+  }
+
+  .era-tag {
+    display: inline-block;
+    margin-top: 0.8rem;
+    padding: 0.25rem 0.9rem;
+    border: 1px solid rgba(201,168,76,0.35);
+    color: rgba(201,168,76,0.75);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── SCIENCE ── */
+  .science-full { background: var(--cream); padding: 6rem 2rem; max-width: 100%; }
+  .science-inner { max-width: 1100px; margin: 0 auto; }
+
+  .science-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .science-card {
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 2rem 1.6rem;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .science-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+
+  .science-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .science-card:hover::after { transform: scaleX(1); }
+
+  .science-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .science-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .science-who {
+    font-size: 0.78rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  .science-desc {
+    font-size: 0.97rem;
+    line-height: 1.8;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── MONARCHY BANNER ── */
+  .monarchy-full { background: var(--bleu); padding: 5rem 2rem; max-width: 100%; }
+  .monarchy-inner { max-width: 1100px; margin: 0 auto; }
+  .monarchy-inner .section-title { color: #fff; }
+  .monarchy-inner .section-label { color: rgba(255,255,255,0.55); }
+  .monarchy-inner .divider { background: linear-gradient(to right, rgba(255,255,255,0.4), transparent); }
+
+  .monarchs-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .monarch-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 1.8rem 1.4rem;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+
+  .monarch-card:hover { background: rgba(255,255,255,0.13); }
+
+  .monarch-crown { font-size: 2rem; display: block; margin-bottom: 0.8rem; }
+
+  .monarch-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+
+  .monarch-dates {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.7rem;
+  }
+
+  .monarch-note {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    font-style: italic;
+  }
+
+  /* ── MONUMENTS ── */
+  .monuments-full { background: var(--light-gold); padding: 6rem 2rem; max-width: 100%; }
+  .monuments-inner { max-width: 1100px; margin: 0 auto; }
+
+  .monuments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 3rem;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .monument-card {
+    padding: 2.2rem 1.8rem;
+    border-right: 1px solid rgba(201,168,76,0.3);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.35s ease;
+    cursor: default;
+  }
+
+  .monument-card:nth-child(3n) { border-right: none; }
+  .monument-card:nth-last-child(-n+3) { border-bottom: none; }
+  .monument-card:hover { background: #fff; }
+
+  .monument-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--gold);
+    transition: height 0.4s ease;
+  }
+
+  .monument-card:hover::before { height: 100%; }
+
+  .monument-silhouette {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    opacity: 0.7;
+  }
+
+  .monument-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+  }
+
+  .monument-location {
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .monument-desc {
+    font-size: 0.97rem;
+    line-height: 1.8;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .monument-stat {
+    display: inline-block;
+    margin-top: 0.9rem;
+    padding: 0.2rem 0.8rem;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ── PHILOSOPHERS ── */
+  .philo-full { background: #1A0A1E; padding: 7rem 2rem; max-width: 100%; }
+  .philo-inner { max-width: 1100px; margin: 0 auto; }
+  .philo-inner .section-title { color: #fff; }
+  .philo-inner .section-label { color: #C89FD4; }
+  .philo-inner .divider { background: linear-gradient(to right, #9B6BB5, transparent); }
+
+  .philo-intro {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.45);
+    max-width: 680px;
+    line-height: 1.9;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .philo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 3rem;
+  }
+
+  .philo-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(155,107,181,0.18);
+    padding: 2.2rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.35s ease;
+    cursor: default;
+  }
+
+  .philo-card:hover { background: rgba(155,107,181,0.08); }
+
+  .philo-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, #9B6BB5, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .philo-card:hover::after { transform: scaleX(1); }
+
+  .philo-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .philo-initial {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: rgba(155,107,181,0.2);
+    border: 1px solid rgba(155,107,181,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #C89FD4;
+    flex-shrink: 0;
+  }
+
+  .philo-meta { flex: 1; }
+
+  .philo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+
+  .philo-dates {
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(200,159,212,0.6);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .philo-school {
+    font-size: 0.8rem;
+    color: #9B6BB5;
+    font-style: italic;
+  }
+
+  .philo-desc {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .philo-idea {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background: rgba(155,107,181,0.15);
+    border: 1px solid rgba(155,107,181,0.3);
+    color: #C89FD4;
+    font-size: 0.82rem;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* ── IMAGES ── */
+  .monument-img-wrap { overflow: hidden; margin: -2.2rem -1.8rem 1.4rem; min-height: 190px; background: linear-gradient(135deg,#1A1209,#2A1F0A); }
+  .monument-img { width: 100%; height: 190px; object-fit: cover; display: block; filter: sepia(15%) contrast(1.05); transition: filter 0.4s ease, transform 0.5s ease, opacity 0.6s ease; }
+  .monument-card:hover .monument-img { filter: sepia(0%) contrast(1.1); transform: scale(1.03); }
+
+  .philo-portrait { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: top center; border: 1px solid rgba(155,107,181,0.4); flex-shrink: 0; filter: grayscale(30%) sepia(10%); background: rgba(155,107,181,0.2); transition: opacity 0.5s ease; }
+
+  .region-img-wrap { overflow: hidden; margin: 0 -1.8rem 1rem; min-height: 140px; background: linear-gradient(135deg,#1A1209,#2A1F0A); }
+  .region-img { width: 100%; height: 140px; object-fit: cover; display: block; filter: sepia(10%) contrast(1.05); transition: filter 0.4s ease, transform 0.4s ease, opacity 0.6s ease; }
+  .region-card:hover .region-img { filter: sepia(0%) contrast(1.1); transform: scale(1.03); }
+
+  .figure-img-wrap { overflow: hidden; margin: -2rem -2rem 1rem; min-height: 170px; background: linear-gradient(135deg,#1A1209,#2A1F0A); }
+  .figure-img { width: 100%; height: 170px; object-fit: cover; object-position: top center; display: block; filter: grayscale(25%) sepia(15%); transition: filter 0.4s ease, opacity 0.6s ease; }
+  .figure-card:hover .figure-img { filter: grayscale(0%) sepia(0%); }
+
+  .hero-bg-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; opacity: 0.18; z-index: 1; transition: opacity 0.8s ease; }
+
+  /* ── CLICKABLE CARDS ── */
+  .clickable-card {
+    cursor: pointer;
+    position: relative;
+  }
+  .clickable-card::after {
+    content: 'Explore →';
+    position: absolute;
+    bottom: 0.9rem; right: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .clickable-card:hover::after { opacity: 1; transform: translateX(0); }
+  .pillar-card.clickable-card::after,
+  .timeline-era.clickable-card::after { bottom: 1rem; }
+  .philo-card.clickable-card::after { color: #C89FD4; }
+  .dish-card.clickable-card::after { bottom: 0.6rem; right: 0.8rem; }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,7,3,0.92);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(6px);
+    padding: 1rem;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal-box {
+    background: var(--cream);
+    max-width: 860px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    transform: translateY(30px) scale(0.97);
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) transparent;
+  }
+  .modal-box.dark { background: #110D08; color: #fff; }
+  .modal-box.purple { background: #130A1C; color: #fff; }
+  .modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+
+  .modal-hero {
+    position: relative;
+    height: 320px;
+    overflow: hidden;
+    background: linear-gradient(135deg,#1A1209,#2A1F0A);
+    display: flex;
+    align-items: flex-end;
+  }
+  .modal-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .modal-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,7,3,0.85) 0%, transparent 60%);
+    z-index: 1;
+  }
+  .modal-hero-text {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 2.5rem;
+    width: 100%;
+  }
+  .modal-category {
+    font-size: 0.72rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem,4vw,2.8rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .modal-subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    font-style: italic;
+  }
+
+  .modal-body { padding: 2.5rem; }
+  .modal-box.dark .modal-body,
+  .modal-box.purple .modal-body { color: rgba(255,255,255,0.75); }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    z-index: 100;
+    width: 40px; height: 40px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease;
+    font-family: sans-serif;
+    line-height: 1;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.15); }
+
+  .modal-tricolor {
+    height: 4px;
+    background: linear-gradient(to right, var(--bleu) 33.33%, #fff 33.33% 66.66%, var(--rouge) 66.66%);
+  }
+
+  .modal-section {
+    margin-bottom: 2rem;
+  }
+  .modal-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    display: block;
+  }
+  .modal-box.purple .modal-section-title { color: #C89FD4; border-color: rgba(200,159,212,0.2); }
+
+  .modal-text {
+    font-size: 1.08rem;
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  .modal-facts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .modal-fact {
+    padding: 1rem 1.2rem;
+    background: rgba(201,168,76,0.07);
+    border-left: 3px solid var(--gold);
+  }
+  .modal-box.dark .modal-fact { background: rgba(201,168,76,0.06); }
+  .modal-box.purple .modal-fact { background: rgba(155,107,181,0.1); border-color: #9B6BB5; }
+  .modal-fact-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  .modal-box.purple .modal-fact-label { color: #C89FD4; }
+  .modal-fact-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .modal-box.dark .modal-fact-value,
+  .modal-box.purple .modal-fact-value { color: #fff; }
+
+  .modal-quote {
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--ink);
+    background: rgba(201,168,76,0.06);
+  }
+  .modal-box.dark .modal-quote,
+  .modal-box.purple .modal-quote { color: rgba(255,255,255,0.8); }
+  .modal-box.purple .modal-quote { border-color: #9B6BB5; background: rgba(155,107,181,0.1); }
+
+  .modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .modal-tag {
+    padding: 0.3rem 0.9rem;
+    border: 1px solid rgba(201,168,76,0.35);
+    color: var(--muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .modal-box.dark .modal-tag { color: rgba(255,255,255,0.5); border-color: rgba(201,168,76,0.25); }
+  .modal-box.purple .modal-tag { color: rgba(200,159,212,0.7); border-color: rgba(155,107,181,0.3); }
+
+  .modal-wiki-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 0.8rem 1.6rem;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  .modal-wiki-link:hover { background: #D4B860; transform: translateY(-2px); }
+
+  .modal-loading {
+    padding: 4rem;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 600px) {
+    .modal-body { padding: 1.5rem; }
+    .modal-hero { height: 240px; }
+    .modal-facts { grid-template-columns: 1fr; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .paris-layout { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .cuisine-grid { grid-template-columns: repeat(2, 1fr); }
+    .regions-grid { grid-template-columns: 1fr; }
+    .arts-figures { grid-template-columns: 1fr; }
+    .eiffel-wrap { display: none; }
+    .science-grid { grid-template-columns: 1fr; }
+    .monarchs-row { grid-template-columns: repeat(2, 1fr); }
+    .timeline { padding-left: 1.2rem; }
+    .timeline-era { padding-left: 1.8rem; }
+    .timeline-era::before { left: -1.2rem; }
+    .monuments-grid { grid-template-columns: 1fr; }
+    .monument-card:nth-child(3n) { border-right: 1px solid rgba(201,168,76,0.3); }
+    .monument-card:nth-last-child(-n+3) { border-bottom: 1px solid rgba(201,168,76,0.3); }
+    .monument-card:last-child { border-bottom: none; }
+    .philo-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" style="max-width:100%; padding:0;">
+  <div class="tricolor-stripe"></div>
+  <img class="hero-bg-img" data-wiki="File:New_view_of_the_Eiffel_Tower,_Paris_-_July_2013.jpg" alt="Paris">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Bienvenue en</p>
+    <h1 class="hero-title">La <em>France</em></h1>
+    <p class="hero-subtitle">Art · Cuisine · Liberté · Amour</p>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Découvrir
+  </div>
+</section>
+
+<!-- INTRO / PARIS -->
+<section>
+  <div class="paris-layout">
+    <div class="paris-text reveal">
+      <span class="section-label">L'Essence</span>
+      <h2 class="section-title">La <em>lumière</em> de Paris</h2>
+      <div class="divider"></div>
+      <p>France is not merely a country — it is a philosophy. A civilization built on the belief that beauty, pleasure, and thought are not luxuries but necessities of the human soul.</p>
+      <p>From the gilded halls of Versailles to a quiet café where an espresso arrives without apology, France has always insisted on living with intention. To be French is to care — about the crust of bread, the turn of a phrase, the angle of afternoon light.</p>
+    </div>
+    <div class="eiffel-wrap reveal">
+      <div class="eiffel-glow"></div>
+      <svg width="240" height="340" viewBox="0 0 240 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Eiffel Tower stylized -->
+        <g opacity="0.92">
+          <!-- Legs lower -->
+          <path d="M60 300 L100 200 L140 200 L180 300Z" fill="#2A2010" stroke="#C9A84C" stroke-width="1"/>
+          <!-- Legs mid -->
+          <path d="M80 200 L106 140 L134 140 L160 200Z" fill="#2A2010" stroke="#C9A84C" stroke-width="1"/>
+          <!-- Body mid-upper -->
+          <path d="M96 140 L110 90 L130 90 L144 140Z" fill="#2A2010" stroke="#C9A84C" stroke-width="0.8"/>
+          <!-- Body upper -->
+          <path d="M106 90 L115 50 L125 50 L134 90Z" fill="#2A2010" stroke="#C9A84C" stroke-width="0.8"/>
+          <!-- Spire -->
+          <path d="M113 50 L120 10 L127 50Z" fill="#C9A84C"/>
+          <!-- Horizontal platforms -->
+          <rect x="75" y="196" width="90" height="6" fill="#C9A84C" opacity="0.6"/>
+          <rect x="90" y="136" width="60" height="5" fill="#C9A84C" opacity="0.5"/>
+          <rect x="100" y="86" width="40" height="4" fill="#C9A84C" opacity="0.4"/>
+          <!-- Lattice lines left leg -->
+          <line x1="70" y1="280" x2="88" y2="230" stroke="#C9A84C" stroke-width="0.5" opacity="0.4"/>
+          <line x1="80" y1="260" x2="95" y2="215" stroke="#C9A84C" stroke-width="0.5" opacity="0.4"/>
+          <!-- Lattice lines right leg -->
+          <line x1="170" y1="280" x2="152" y2="230" stroke="#C9A84C" stroke-width="0.5" opacity="0.4"/>
+          <line x1="160" y1="260" x2="145" y2="215" stroke="#C9A84C" stroke-width="0.5" opacity="0.4"/>
+          <!-- Star at top -->
+          <circle cx="120" cy="8" r="3" fill="#C9A84C" opacity="0.9"/>
+        </g>
+        <!-- Ground line -->
+        <line x1="30" y1="305" x2="210" y2="305" stroke="#C9A84C" stroke-width="0.5" opacity="0.3"/>
+        <!-- Reflection -->
+        <ellipse cx="120" cy="318" rx="50" ry="6" fill="#C9A84C" opacity="0.07"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<div class="pillars-full">
+  <div class="pillars-inner">
+    <span class="section-label reveal">Les Piliers</span>
+    <h2 class="section-title reveal">Ce qui définit <em style="color:var(--gold)">la France</em></h2>
+    <div class="divider reveal"></div>
+    <div class="pillars-grid">
+      <div class="pillar-card reveal clickable-card">
+        <span class="pillar-number">01</span>
+        <h3 class="pillar-title">La Langue</h3>
+        <p class="pillar-desc">French — the language of diplomacy, romance, and reason. One of the most spoken languages on earth, shaped by centuries of poets, philosophers, and revolutionaries.</p>
+      </div>
+      <div class="pillar-card reveal clickable-card">
+        <span class="pillar-number">02</span>
+        <h3 class="pillar-title">La République</h3>
+        <p class="pillar-desc">Liberté, Égalité, Fraternité. France gave the world the modern ideal of democratic citizenship, born from the fire of 1789 and refined through centuries of struggle.</p>
+      </div>
+      <div class="pillar-card reveal clickable-card">
+        <span class="pillar-number">03</span>
+        <h3 class="pillar-title">Le Savoir-Vivre</h3>
+        <p class="pillar-desc">The art of knowing how to live. Long lunches, unhurried conversations, the ritual of the apéritif — France elevates daily life into ceremony.</p>
+      </div>
+      <div class="pillar-card reveal clickable-card">
+        <span class="pillar-number">04</span>
+        <h3 class="pillar-title">La Mode</h3>
+        <p class="pillar-desc">Paris has been the capital of fashion since the 17th century. From Chanel to Saint Laurent, French style is the global standard of elegance.</p>
+      </div>
+      <div class="pillar-card reveal clickable-card">
+        <span class="pillar-number">05</span>
+        <h3 class="pillar-title">La Philosophie</h3>
+        <p class="pillar-desc">Descartes, Voltaire, Rousseau, Sartre, Simone de Beauvoir — French thinkers have questioned, provoked, and reshaped the way humanity understands itself.</p>
+      </div>
+      <div class="pillar-card reveal clickable-card">
+        <span class="pillar-number">06</span>
+        <h3 class="pillar-title">Le Patrimoine</h3>
+        <p class="pillar-desc">With over 45,000 protected monuments and 52 UNESCO World Heritage Sites, France is the world's greatest custodian of human heritage.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CUISINE -->
+<div class="cuisine-section">
+  <div class="cuisine-inner">
+    <span class="section-label reveal">La Gastronomie</span>
+    <h2 class="section-title reveal">La table <em>française</em></h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="font-size:1.15rem; color:var(--muted); max-width:680px; line-height:1.9; font-style:italic;">French cuisine, inscribed in UNESCO's Intangible Cultural Heritage, is not about food alone — it is about memory, season, terroir, and the profound act of sharing.</p>
+    <div class="cuisine-grid" style="margin-top:3rem;">
+      <div class="dish-card reveal clickable-card">
+        <span class="dish-icon">🥐</span>
+        <div class="dish-name">Le Croissant</div>
+        <p class="dish-desc">Buttery, laminated, feather-light — the quintessential French morning.</p>
+      </div>
+      <div class="dish-card reveal clickable-card">
+        <span class="dish-icon">🧅</span>
+        <div class="dish-name">Soupe à l'Oignon</div>
+        <p class="dish-desc">Slow-caramelized onions, rich broth, crowned with gruyère gratinée.</p>
+      </div>
+      <div class="dish-card reveal clickable-card">
+        <span class="dish-icon">🍷</span>
+        <div class="dish-name">Vin de Bourgogne</div>
+        <p class="dish-desc">Pinot Noir from ancient limestone soils — the world's most coveted red.</p>
+      </div>
+      <div class="dish-card reveal clickable-card">
+        <span class="dish-icon">🧀</span>
+        <div class="dish-name">Le Fromage</div>
+        <p class="dish-desc">Over 1,200 varieties. De Gaulle marvelled at a nation with so many cheeses.</p>
+      </div>
+      <div class="dish-card reveal clickable-card">
+        <span class="dish-icon">🥗</span>
+        <div class="dish-name">Salade Niçoise</div>
+        <p class="dish-desc">A Provençal masterpiece of tuna, olive, egg, and the heat of the Midi sun.</p>
+      </div>
+      <div class="dish-card reveal clickable-card">
+        <span class="dish-icon">🍮</span>
+        <div class="dish-name">Crème Brûlée</div>
+        <p class="dish-desc">Silken custard beneath a crackling caramel glass — theatre on a spoon.</p>
+      </div>
+      <div class="dish-card reveal clickable-card">
+        <span class="dish-icon">🥖</span>
+        <div class="dish-name">La Baguette</div>
+        <p class="dish-desc">UNESCO-listed. A Parisian carries one home like a sacred daily rite.</p>
+      </div>
+      <div class="dish-card reveal clickable-card">
+        <span class="dish-icon">🫐</span>
+        <div class="dish-name">Tarte Tatin</div>
+        <p class="dish-desc">An upside-down apple tart born from a happy accident in the Loire Valley.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <div style="max-width:900px; margin:0 auto; text-align:center;">
+    <span class="quote-mark reveal">"</span>
+    <p class="big-quote reveal">Paris is always a good idea.</p>
+    <p class="quote-author reveal">— Audrey Hepburn, Sabrina, 1954</p>
+  </div>
+</div>
+
+<!-- REGIONS -->
+<section>
+  <span class="section-label reveal">Le Territoire</span>
+  <h2 class="section-title reveal">Les <em>régions</em> de France</h2>
+  <div class="divider reveal"></div>
+  <div class="regions-grid">
+    <div class="region-card reveal clickable-card">
+      <div class="region-img-wrap"><img class="region-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Lavender_field_in_Valensole_Plateau.jpg/800px-Lavender_field_in_Valensole_Plateau.jpg" alt="Provence lavender" loading="lazy"></div>
+      <div class="region-name">Provence-Alpes-Côte d'Azur</div>
+      <span class="region-sub">Le Midi</span>
+      <p class="region-desc">Lavender fields, olive groves, the turquoise Mediterranean. Cézanne painted it, Picasso lived it. Time moves differently here, steeped in fragrance and golden light.</p>
+    </div>
+    <div class="region-card reveal clickable-card">
+      <div class="region-img-wrap"><img class="region-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Pointe_du_Raz_depuis_la_Baie_des_Tr%C3%A9pass%C3%A9s.jpg/800px-Pointe_du_Raz_depuis_la_Baie_des_Tr%C3%A9pass%C3%A9s.jpg" alt="Bretagne coast" loading="lazy"></div>
+      <div class="region-name">Bretagne</div>
+      <span class="region-sub">Le Finistère</span>
+      <p class="region-desc">Celtic winds, rugged cliffs, crêpes and cider. Brittany is France's edge — wild, proud, speaking its own ancient tongue against the Atlantic swell.</p>
+    </div>
+    <div class="region-card reveal clickable-card">
+      <div class="region-img-wrap"><img class="region-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Riquewihr_Alsace.jpg/800px-Riquewihr_Alsace.jpg" alt="Alsace village" loading="lazy"></div>
+      <div class="region-name">Alsace</div>
+      <span class="region-sub">La Frontière</span>
+      <p class="region-desc">Half French, half German, entirely itself. Half-timbered villages draped in flowers, Riesling vineyards on steep slopes, and a cuisine that defies all borders.</p>
+    </div>
+    <div class="region-card reveal clickable-card">
+      <div class="region-img-wrap"><img class="region-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Burgundy_Vineyard.jpg/800px-Burgundy_Vineyard.jpg" alt="Bourgogne vineyard" loading="lazy"></div>
+      <div class="region-name">Bourgogne</div>
+      <span class="region-sub">Le Terroir</span>
+      <p class="region-desc">The land where wine is scripture. Vineyards older than nations, Dijon mustard, escargots — the very concept of terroir was born in these ancient soils.</p>
+    </div>
+    <div class="region-card reveal clickable-card">
+      <div class="region-img-wrap"><img class="region-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Le_Mont_Saint_Michel_3_%28cropped%29.jpg/800px-Le_Mont_Saint_Michel_3_%28cropped%29.jpg" alt="Normandie" loading="lazy"></div>
+      <div class="region-name">Normandie</div>
+      <span class="region-sub">Le Bocage</span>
+      <p class="region-desc">Apple orchards, Camembert dairies, D-Day beaches, and the floating abbey of Mont-Saint-Michel rising from the tidal flats like a medieval dream.</p>
+    </div>
+    <div class="region-card reveal clickable-card">
+      <div class="region-img-wrap"><img class="region-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/New_view_of_the_Eiffel_Tower%2C_Paris_-_July_2013.jpg/800px-New_view_of_the_Eiffel_Tower%2C_Paris_-_July_2013.jpg" alt="Paris Île-de-France" loading="lazy"></div>
+      <div class="region-name">Île-de-France</div>
+      <span class="region-sub">Le Cœur</span>
+      <p class="region-desc">Paris and its crown of royal forests and châteaux. The Louvre, Notre-Dame, Versailles — the world's greatest concentration of art and history in one small region.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARTS -->
+<div class="arts-full">
+  <div class="arts-inner">
+    <span class="section-label reveal">La Culture</span>
+    <h2 class="section-title reveal">Arts &amp; <em style="color:rgba(255,255,255,0.7)">Lettres</em></h2>
+    <div class="divider reveal"></div>
+    <div class="arts-row reveal">
+      <span class="art-pill">Impressionnisme</span>
+      <span class="art-pill">Nouvelle Vague</span>
+      <span class="art-pill">Art Nouveau</span>
+      <span class="art-pill">Surréalisme</span>
+      <span class="art-pill">Chanson française</span>
+      <span class="art-pill">Le Louvre</span>
+      <span class="art-pill">Théâtre classique</span>
+    </div>
+    <div class="arts-figures">
+      <div class="figure-card reveal clickable-card">
+        <div class="figure-img-wrap"><img class="figure-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Claude_Monet_1899_Nadar_crop.jpg/400px-Claude_Monet_1899_Nadar_crop.jpg" alt="Claude Monet" loading="lazy"></div>
+        <div class="figure-name">Claude Monet</div>
+        <span class="figure-field">Peinture · Giverny, 1840–1926</span>
+        <p class="figure-note">He painted light itself. The Water Lilies series, created in the last decades of his life, remains the most meditative act of seeing ever committed to canvas.</p>
+      </div>
+      <div class="figure-card reveal clickable-card">
+        <div class="figure-img-wrap"><img class="figure-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Simone_de_Beauvoir2.png/400px-Simone_de_Beauvoir2.png" alt="Simone de Beauvoir" loading="lazy"></div>
+        <div class="figure-name">Simone de Beauvoir</div>
+        <span class="figure-field">Philosophie · Paris, 1908–1986</span>
+        <p class="figure-note">"One is not born, but rather becomes, a woman." A single sentence that altered the course of history. France's most consequential philosopher of the 20th century.</p>
+      </div>
+      <div class="figure-card reveal clickable-card">
+        <div class="figure-img-wrap"><img class="figure-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Edith-piaf.jpg/400px-Edith-piaf.jpg" alt="Édith Piaf" loading="lazy" style="object-position:top center;"></div>
+        <div class="figure-name">Édith Piaf</div>
+        <span class="figure-field">Chanson · Paris, 1915–1963</span>
+        <p class="figure-note">She sang from the gutters of Paris and reached the whole world. Non, je ne regrette rien — the anthem of a nation that refuses to dwell on loss.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORY TIMELINE -->
+<div class="history-full">
+  <div class="history-inner">
+    <span class="section-label reveal">L'Histoire</span>
+    <h2 class="section-title reveal">Deux mille ans <em style="color:var(--gold)">d'histoire</em></h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="font-size:1.15rem; color:rgba(255,255,255,0.48); max-width:700px; line-height:1.9; font-style:italic; margin-bottom:1rem;">No nation has shaped Western civilisation more completely. From Gallic warriors to nuclear power, every century has left its scar and its glory.</p>
+
+    <div class="timeline">
+
+      <div class="timeline-era reveal clickable-card">
+        <span class="era-date">58 – 51 BC</span>
+        <div class="era-title">La Gaule &amp; César</div>
+        <p class="era-desc">Julius Caesar's Gallic Wars brought the Celtic tribes of Gaul under Roman rule, but not without fierce resistance. The chieftain Vercingetorix united the Gauls in a final stand at Alésia in 52 BC. Though defeated, his courage became the founding myth of a nation that prizes defiance above all.</p>
+        <span class="era-tag">Roman Gaul</span>
+      </div>
+
+      <div class="timeline-era reveal clickable-card">
+        <span class="era-date">481 – 751 AD</span>
+        <div class="era-title">Les Mérovingiens</div>
+        <p class="era-desc">Clovis I, King of the Franks, united the fragmented post-Roman territories and converted to Christianity in 496 AD — a conversion that would bind the French throne to the Church for thirteen centuries. His Merovingian dynasty laid the first stones of what would become France.</p>
+        <span class="era-tag">Frankish Kingdom</span>
+      </div>
+
+      <div class="timeline-era reveal clickable-card">
+        <span class="era-date">768 – 814 AD</span>
+        <div class="era-title">Charlemagne — Père de l'Europe</div>
+        <p class="era-desc">Crowned Holy Roman Emperor on Christmas Day 800, Charlemagne forged an empire stretching from the Atlantic to modern Poland. He unified laws, reformed education, and standardised currency. Both France and Germany claim him as their founding father — the first great European.</p>
+        <span class="era-tag">Carolingian Empire</span>
+      </div>
+
+      <div class="timeline-era reveal clickable-card">
+        <span class="era-date">1337 – 1453</span>
+        <div class="era-title">La Guerre de Cent Ans</div>
+        <p class="era-desc">A century of war against England that forged French national identity in fire and blood. From the ashes emerged a teenage girl from Lorraine — Jeanne d'Arc — who rallied a defeated army, crowned a king at Reims, and was burned at the stake at 19. She remains the soul of France.</p>
+        <span class="era-tag">Medieval France</span>
+      </div>
+
+      <div class="timeline-era reveal clickable-card">
+        <span class="era-date">1643 – 1715</span>
+        <div class="era-title">Louis XIV — Le Roi-Soleil</div>
+        <p class="era-desc">The Sun King reigned for 72 years — the longest of any major European monarch. He built Versailles as the ultimate theatre of power, centralised the French state, and made Paris the cultural capital of the world. "L'état, c'est moi," he allegedly declared. He was not entirely wrong.</p>
+        <span class="era-tag">Absolute Monarchy</span>
+      </div>
+
+      <div class="timeline-era reveal clickable-card">
+        <span class="era-date">1789 – 1799</span>
+        <div class="era-title">La Révolution Française</div>
+        <p class="era-desc">The storming of the Bastille on 14 July 1789 was the moment the modern world began. The Declaration of the Rights of Man, the guillotine, the Terror, the Republic — France tore itself apart and rebuilt on the radical idea that sovereignty belonged to the people, not the crown.</p>
+        <span class="era-tag">The Republic · Liberté</span>
+      </div>
+
+      <div class="timeline-era reveal clickable-card">
+        <span class="era-date">1804 – 1815</span>
+        <div class="era-title">Napoléon Bonaparte</div>
+        <p class="era-desc">A Corsican artillery officer who became Emperor of the French. Napoleon reformed law with the Code Civil, reorganised education and the judiciary, and conquered most of Europe. His downfall at Waterloo left France diminished but his legal and administrative legacy reshaped the Western world.</p>
+        <span class="era-tag">The First Empire</span>
+      </div>
+
+      <div class="timeline-era reveal clickable-card">
+        <span class="era-date">1914 – 1918</span>
+        <div class="era-title">La Grande Guerre</div>
+        <p class="era-desc">France lost 1.4 million soldiers — nearly one in four of all men aged 18 to 27. The Western Front carved through French soil for four years. Verdun, the Somme, the Marne — names that still carry the weight of incomprehensible sacrifice. Victory came, but at a cost that scarred a generation.</p>
+        <span class="era-tag">World War I</span>
+      </div>
+
+      <div class="timeline-era reveal clickable-card">
+        <span class="era-date">1940 – 1944</span>
+        <div class="era-title">L'Occupation &amp; La Résistance</div>
+        <p class="era-desc">France fell to Nazi Germany in six weeks. While the Vichy regime collaborated, the French Resistance — ordinary citizens, railway workers, students, farmers — chose to fight in the shadows. De Gaulle's voice from London kept the flame of Free France alive until Liberation in August 1944.</p>
+        <span class="era-tag">World War II</span>
+      </div>
+
+      <div class="timeline-era reveal clickable-card">
+        <span class="era-date">1958 – Present</span>
+        <div class="era-title">La Cinquième République</div>
+        <p class="era-desc">Charles de Gaulle crafted a new constitution that gave France its modern political form. A founding member of the European Union, a permanent seat on the UN Security Council, and one of nine nuclear-armed states — the Fifth Republic made France a global power again, quietly and without apology.</p>
+        <span class="era-tag">Modern France</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MONARCHY -->
+<div class="monarchy-full">
+  <div class="monarchy-inner">
+    <span class="section-label reveal">La Royauté</span>
+    <h2 class="section-title reveal">Les <em style="color:rgba(255,255,255,0.65)">grands rois</em> de France</h2>
+    <div class="divider reveal"></div>
+    <div class="monarchs-row">
+      <div class="monarch-card reveal clickable-card">
+        <span class="monarch-crown">👑</span>
+        <div class="monarch-name">Clovis I</div>
+        <span class="monarch-dates">481 – 511 AD</span>
+        <p class="monarch-note">United the Frankish tribes and founded the French royal tradition by converting to Christianity.</p>
+      </div>
+      <div class="monarch-card reveal clickable-card">
+        <span class="monarch-crown">⚔️</span>
+        <div class="monarch-name">Philippe II Auguste</div>
+        <span class="monarch-dates">1180 – 1223</span>
+        <p class="monarch-note">Doubled the size of France, built the first Louvre fortress, and turned Paris into a true capital.</p>
+      </div>
+      <div class="monarch-card reveal clickable-card">
+        <span class="monarch-crown">✝️</span>
+        <div class="monarch-name">Louis IX — Saint Louis</div>
+        <span class="monarch-dates">1226 – 1270</span>
+        <p class="monarch-note">France's only canonised king. Built the Sainte-Chapelle and led two Crusades with piety and justice.</p>
+      </div>
+      <div class="monarch-card reveal clickable-card">
+        <span class="monarch-crown">☀️</span>
+        <div class="monarch-name">Louis XIV</div>
+        <span class="monarch-dates">1643 – 1715</span>
+        <p class="monarch-note">The Sun King. Built Versailles, centralised France, and made French the language of all European courts.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCIENCE & INVENTIONS -->
+<div class="science-full">
+  <div class="science-inner">
+    <span class="section-label reveal">La Science</span>
+    <h2 class="section-title reveal">Génie <em>français</em></h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="font-size:1.15rem; color:var(--muted); max-width:680px; line-height:1.9; font-style:italic;">France has given the world some of its most transformative scientific discoveries and inventions — from the metric system to cinema itself.</p>
+    <div class="science-grid">
+      <div class="science-card reveal clickable-card">
+        <span class="science-icon">💉</span>
+        <div class="science-name">Vaccination</div>
+        <span class="science-who">Louis Pasteur · 1885</span>
+        <p class="science-desc">Pasteur developed the first vaccines for rabies and anthrax, founding the science of microbiology and saving hundreds of millions of lives.</p>
+      </div>
+      <div class="science-card reveal clickable-card">
+        <span class="science-icon">🎬</span>
+        <div class="science-name">Le Cinéma</div>
+        <span class="science-who">Frères Lumière · 1895</span>
+        <p class="science-desc">Auguste and Louis Lumière held the world's first public film screening in Paris on 28 December 1895. They invented the art form that would define the 20th century.</p>
+      </div>
+      <div class="science-card reveal clickable-card">
+        <span class="science-icon">📡</span>
+        <div class="science-name">Le Système Métrique</div>
+        <span class="science-who">Académie des Sciences · 1795</span>
+        <p class="science-desc">France gave the world a universal language of measurement. The metre, kilogram, and litre — the rational foundation of all modern science and commerce.</p>
+      </div>
+      <div class="science-card reveal clickable-card">
+        <span class="science-icon">⚗️</span>
+        <div class="science-name">La Radioactivité</div>
+        <span class="science-who">Marie Curie · 1898</span>
+        <p class="science-desc">Polish-born, Paris-trained, Marie Curie discovered polonium and radium, and became the first person — and only woman — to win two Nobel Prizes in two sciences.</p>
+      </div>
+      <div class="science-card reveal clickable-card">
+        <span class="science-icon">✈️</span>
+        <div class="science-name">L'Aérostat</div>
+        <span class="science-who">Frères Montgolfier · 1783</span>
+        <p class="science-desc">The Montgolfier brothers launched the first manned hot-air balloon over Paris in 1783, opening the age of flight more than a century before the Wright brothers.</p>
+      </div>
+      <div class="science-card reveal clickable-card">
+        <span class="science-icon">🔬</span>
+        <div class="science-name">Le Stéthoscope</div>
+        <span class="science-who">René Laennec · 1816</span>
+        <p class="science-desc">A Breton physician rolled up paper to listen to a patient's heart. The stethoscope transformed medicine and became the enduring symbol of the healing profession.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MONUMENTS -->
+<div class="monuments-full">
+  <div class="monuments-inner">
+    <span class="section-label reveal">Le Patrimoine</span>
+    <h2 class="section-title reveal">Monuments <em>éternels</em></h2>
+    <div class="divider reveal"></div>
+    <p class="reveal" style="font-size:1.15rem;color:var(--muted);max-width:680px;line-height:1.9;font-style:italic;">France is an open-air museum. Its monuments are not relics — they breathe, they receive millions, they continue to astonish.</p>
+    <div class="monuments-grid">
+
+      <div class="monument-card reveal clickable-card">
+        <div class="monument-img-wrap">
+          <img class="monument-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Eiffel_Tower_from_Champs_de_Mars_2022.jpg/800px-Eiffel_Tower_from_Champs_de_Mars_2022.jpg" alt="La Tour Eiffel" loading="lazy">
+        </div>
+        <div class="monument-name" data-monument="La Tour Eiffel">La Tour Eiffel</div>
+        <span class="monument-location">Paris, 7ème arrondissement</span>
+        <p class="monument-desc">Built in 1889 as a temporary structure for the World's Fair, Gustave Eiffel's iron lattice tower was nearly demolished but became the most visited monument on earth. At 330 metres, it defined the Paris skyline forever.</p>
+        <span class="monument-stat">7 million visitors / year</span>
+      </div>
+
+      <div class="monument-card reveal clickable-card">
+        <div class="monument-img-wrap">
+          <img class="monument-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Louvre_-_Pei_Pyramid_%28copyright-free%29.jpg/800px-Louvre_-_Pei_Pyramid_%28copyright-free%29.jpg" alt="Le Louvre" loading="lazy">
+        </div>
+        <div class="monument-name" data-monument="Le Louvre">Le Louvre</div>
+        <span class="monument-location">Paris, 1er arrondissement</span>
+        <p class="monument-desc">Once a royal fortress, then a palace, now the world's largest art museum. Over 35,000 works span three wings and three millennia — from the Winged Victory of Samothrace to the Mona Lisa's enigmatic smile behind its protective glass.</p>
+        <span class="monument-stat">9.6 million visitors / year</span>
+      </div>
+
+      <div class="monument-card reveal clickable-card">
+        <div class="monument-img-wrap">
+          <img class="monument-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Notre-Dame_de_Paris%2C_4_October_2017.jpg/800px-Notre-Dame_de_Paris%2C_4_October_2017.jpg" alt="Notre-Dame de Paris" loading="lazy">
+        </div>
+        <div class="monument-name" data-monument="Notre-Dame de Paris">Notre-Dame de Paris</div>
+        <span class="monument-location">Île de la Cité, Paris</span>
+        <p class="monument-desc">The Gothic cathedral begun in 1163 took nearly two centuries to complete. Its flying buttresses, rose windows, and gargoyles made it the masterpiece of medieval architecture. Scarred by the fire of 2019, it reopened in December 2024 after a miraculous restoration.</p>
+        <span class="monument-stat">Rebuilt · Reopened 2024</span>
+      </div>
+
+      <div class="monument-card reveal clickable-card">
+        <div class="monument-img-wrap">
+          <img class="monument-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Palace_of_Versailles%2C_May_2015.jpg/800px-Palace_of_Versailles%2C_May_2015.jpg" alt="Château de Versailles" loading="lazy">
+        </div>
+        <div class="monument-name" data-monument="Le Château de Versailles">Le Château de Versailles</div>
+        <span class="monument-location">Versailles, Île-de-France</span>
+        <p class="monument-desc">The apotheosis of absolute monarchy. Louis XIV transformed a hunting lodge into a palace of 2,300 rooms, with gardens stretching 800 hectares. The Hall of Mirrors — 73 metres of gilded grandeur — hosted the signing of the Treaty of Versailles in 1919.</p>
+        <span class="monument-stat">10 million visitors / year</span>
+      </div>
+
+      <div class="monument-card reveal clickable-card">
+        <div class="monument-img-wrap">
+          <img class="monument-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Arc_de_Triomphe%2C_Paris_21_October_2010.jpg/800px-Arc_de_Triomphe%2C_Paris_21_October_2010.jpg" alt="Arc de Triomphe" loading="lazy">
+        </div>
+        <div class="monument-name" data-monument="L'Arc de Triomphe">L'Arc de Triomphe</div>
+        <span class="monument-location">Place Charles de Gaulle, Paris</span>
+        <p class="monument-desc">Napoleon commissioned this 50-metre triumphal arch in 1806 to honour the Grand Army, though he never saw it completed. Beneath it burns the Eternal Flame at the Tomb of the Unknown Soldier — a vigil kept since 1921, rekindled every evening at 6:30 PM.</p>
+        <span class="monument-stat">Built 1806 – 1836</span>
+      </div>
+
+      <div class="monument-card reveal clickable-card">
+        <div class="monument-img-wrap">
+          <img class="monument-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Le_Mont_Saint_Michel_3_%28cropped%29.jpg/800px-Le_Mont_Saint_Michel_3_%28cropped%29.jpg" alt="Mont-Saint-Michel" loading="lazy">
+        </div>
+        <div class="monument-name" data-monument="Mont-Saint-Michel">Mont-Saint-Michel</div>
+        <span class="monument-location">Normandie · UNESCO Heritage</span>
+        <p class="monument-desc">A tidal island crowned by a medieval abbey rising 92 metres above the sea. At high tide, the causeway floods and the mount becomes an island — a vision so otherworldly that Victor Hugo called it "a pyramid on the ocean." Inhabited since the 8th century.</p>
+        <span class="monument-stat">UNESCO · Since 1979</span>
+      </div>
+
+      <div class="monument-card reveal clickable-card">
+        <div class="monument-img-wrap">
+          <img class="monument-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Pont_du_Gard_Oct_2007.jpg/800px-Pont_du_Gard_Oct_2007.jpg" alt="Pont du Gard" loading="lazy">
+        </div>
+        <div class="monument-name" data-monument="Le Pont du Gard">Le Pont du Gard</div>
+        <span class="monument-location">Occitanie · UNESCO Heritage</span>
+        <p class="monument-desc">Built by Roman engineers around 50 AD to carry water across the Gardon valley, this three-tiered aqueduct bridge stands 49 metres high and stretches 275 metres. No mortar was used — its massive limestone blocks are held by gravity and precision alone.</p>
+        <span class="monument-stat">Built c. 50 AD · Roman</span>
+      </div>
+
+      <div class="monument-card reveal clickable-card">
+        <div class="monument-img-wrap">
+          <img class="monument-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Pantheon_of_Paris_007.JPG/800px-Pantheon_of_Paris_007.JPG" alt="Le Panthéon" loading="lazy">
+        </div>
+        <div class="monument-name" data-monument="Le Panthéon">Le Panthéon</div>
+        <span class="monument-location">Paris, 5ème arrondissement</span>
+        <p class="monument-desc">Originally a church dedicated to Sainte Geneviève, the Revolution transformed it into a secular mausoleum for France's greatest citizens. Voltaire and Rousseau lie here side by side — old enemies reunited in marble. Marie Curie was the first woman to be interred in 1995.</p>
+        <span class="monument-stat">72 grands hommes interred</span>
+      </div>
+
+      <div class="monument-card reveal clickable-card">
+        <div class="monument-img-wrap">
+          <img class="monument-img" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Sainte_Chapelle_-_Upper_Chapel_Stained_Glass.jpg/800px-Sainte_Chapelle_-_Upper_Chapel_Stained_Glass.jpg" alt="La Sainte-Chapelle" loading="lazy" style="object-position:center center;">
+        </div>
+        <div class="monument-name" data-monument="La Sainte-Chapelle">La Sainte-Chapelle</div>
+        <span class="monument-location">Île de la Cité, Paris</span>
+        <p class="monument-desc">Built by Saint Louis in 1248 to house the Crown of Thorns, this royal chapel is the supreme achievement of Rayonnant Gothic architecture. Its upper chapel is almost entirely glass — 1,113 stained-glass panels filter Paris light into a kaleidoscope of jewelled colour.</p>
+        <span class="monument-stat">Built 1242 – 1248</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PHILOSOPHERS -->
+<div class="philo-full">
+  <div class="philo-inner">
+    <span class="section-label reveal">La Philosophie</span>
+    <h2 class="section-title reveal">Les <em style="color:#C89FD4">grands penseurs</em></h2>
+    <div class="divider reveal"></div>
+    <p class="philo-intro reveal">France did not merely produce philosophers — it produced revolutions of thought. From Descartes' doubt to Sartre's freedom, French thinkers dismantled certainties and rebuilt the world in ideas.</p>
+    <div class="philo-grid">
+
+      <div class="philo-card reveal clickable-card">
+        <div class="philo-header">
+          <img class="philo-portrait" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg/200px-Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg" alt="René Descartes" loading="lazy">
+          <div class="philo-meta">
+            <div class="philo-name">René Descartes</div>
+            <span class="philo-dates">1596 – 1650</span>
+            <span class="philo-school">Rationalism · Father of Modern Philosophy</span>
+          </div>
+        </div>
+        <p class="philo-desc">Descartes decided to doubt everything he had ever believed — sensation, memory, the external world — until he reached one undeniable truth: the act of doubting itself proved he existed. From this single certainty he rebuilt all knowledge. His mind-body dualism still shapes how we think about consciousness today.</p>
+        <span class="philo-idea">"Cogito, ergo sum" — I think, therefore I am</span>
+      </div>
+
+      <div class="philo-card reveal clickable-card">
+        <div class="philo-header">
+          <img class="philo-portrait" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Jean-Antoine_Houdon_-_Voltaire_assis_%28Ermitage%29.jpg/200px-Jean-Antoine_Houdon_-_Voltaire_assis_%28Ermitage%29.jpg" alt="Voltaire" loading="lazy">
+          <div class="philo-meta">
+            <div class="philo-name">Voltaire</div>
+            <span class="philo-dates">1694 – 1778</span>
+            <span class="philo-school">Enlightenment · Wit as Weapon</span>
+          </div>
+        </div>
+        <p class="philo-desc">Born François-Marie Arouet, Voltaire wielded satire with surgical precision against the Church, absolute monarchy, and religious intolerance. Exiled twice, imprisoned in the Bastille, his pen never stopped. His novella Candide remains the most devastating critique of blind optimism ever written in under 100 pages.</p>
+        <span class="philo-idea">"Écrasez l'infâme" — Crush the infamous thing</span>
+      </div>
+
+      <div class="philo-card reveal clickable-card">
+        <div class="philo-header">
+          <img class="philo-portrait" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Jean-Jacques_Rousseau_%28painted_portrait%29.jpg/200px-Jean-Jacques_Rousseau_%28painted_portrait%29.jpg" alt="Jean-Jacques Rousseau" loading="lazy">
+          <div class="philo-meta">
+            <div class="philo-name">Jean-Jacques Rousseau</div>
+            <span class="philo-dates">1712 – 1778</span>
+            <span class="philo-school">Social Contract · Romantic Thought</span>
+          </div>
+        </div>
+        <p class="philo-desc">Rousseau argued that civilisation had corrupted natural human goodness — that private property, inequality, and institutions had enslaved the free. His Social Contract opened with words that ignited the French Revolution: "Man is born free, and everywhere he is in chains." His ideas on education, democracy, and nature reshaped the modern world.</p>
+        <span class="philo-idea">"L'homme est né libre, et partout il est dans les fers"</span>
+      </div>
+
+      <div class="philo-card reveal clickable-card">
+        <div class="philo-header">
+          <img class="philo-portrait" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Montaigne_1.jpg/200px-Montaigne_1.jpg" alt="Michel de Montaigne" loading="lazy">
+          <div class="philo-meta">
+            <div class="philo-name">Michel de Montaigne</div>
+            <span class="philo-dates">1533 – 1592</span>
+            <span class="philo-school">Renaissance Humanism · The Essay Form</span>
+          </div>
+        </div>
+        <p class="philo-desc">Montaigne invented the personal essay — a form so new he named it himself: essais, attempts. Withdrawing to his tower in Bordeaux, he examined his own thoughts, habits, and contradictions with radical honesty. "Que sais-je?" — What do I know? — became the motto of a lifelong inquiry into the self that defined Renaissance humanism.</p>
+        <span class="philo-idea">"Que sais-je?" — What do I know?</span>
+      </div>
+
+      <div class="philo-card reveal clickable-card">
+        <div class="philo-header">
+          <img class="philo-portrait" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Jean-Paul_Sartre_in_Venice_%28cropped%29.jpg/200px-Jean-Paul_Sartre_in_Venice_%28cropped%29.jpg" alt="Jean-Paul Sartre" loading="lazy">
+          <div class="philo-meta">
+            <div class="philo-name">Jean-Paul Sartre</div>
+            <span class="philo-dates">1905 – 1980</span>
+            <span class="philo-school">Existentialism · Radical Freedom</span>
+          </div>
+        </div>
+        <p class="philo-desc">Sartre declared that existence precedes essence — there is no predetermined human nature, no God to define us. We are condemned to be free, and that freedom carries total responsibility. Writing in the cafés of Saint-Germain-des-Prés through the Occupation and Cold War, he made philosophy a lived, urgent, street-level practice.</p>
+        <span class="philo-idea">"L'existence précède l'essence"</span>
+      </div>
+
+      <div class="philo-card reveal clickable-card">
+        <div class="philo-header">
+          <img class="philo-portrait" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Simone_de_Beauvoir2.png/200px-Simone_de_Beauvoir2.png" alt="Simone de Beauvoir" loading="lazy">
+          <div class="philo-meta">
+            <div class="philo-name">Simone de Beauvoir</div>
+            <span class="philo-dates">1908 – 1986</span>
+            <span class="philo-school">Existential Feminism · Ethics of Freedom</span>
+          </div>
+        </div>
+        <p class="philo-desc">De Beauvoir applied Sartrean existentialism to the condition of women with devastating effect. The Second Sex (1949) argued that "woman" is not a biological destiny but a social construction — that femininity is imposed, not inherent. The book launched second-wave feminism globally and remains the foundational text of gender theory.</p>
+        <span class="philo-idea">"On ne naît pas femme, on le devient"</span>
+      </div>
+
+      <div class="philo-card reveal clickable-card">
+        <div class="philo-header">
+          <img class="philo-portrait" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Blaise_Pascal_Versailles.JPG/200px-Blaise_Pascal_Versailles.JPG" alt="Blaise Pascal" loading="lazy">
+          <div class="philo-meta">
+            <div class="philo-name">Blaise Pascal</div>
+            <span class="philo-dates">1623 – 1662</span>
+            <span class="philo-school">Christian Apologetics · Mathematics of Belief</span>
+          </div>
+        </div>
+        <p class="philo-desc">A mathematical prodigy who invented the first mechanical calculator at 19, Pascal turned his mind to faith after a mystical experience. His Pensées — fragmented notes for an unfinished defence of Christianity — produced some of the most piercing observations on human psychology ever written, including the famous "wager" on God's existence.</p>
+        <span class="philo-idea">"Le cœur a ses raisons que la raison ne connaît point"</span>
+      </div>
+
+      <div class="philo-card reveal clickable-card">
+        <div class="philo-header">
+          <img class="philo-portrait" data-wiki-src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Michel_Foucault_1974_Brasil.jpg/200px-Michel_Foucault_1974_Brasil.jpg" alt="Michel Foucault" loading="lazy">
+          <div class="philo-meta">
+            <div class="philo-name">Michel Foucault</div>
+            <span class="philo-dates">1926 – 1984</span>
+            <span class="philo-school">Post-Structuralism · Power &amp; Knowledge</span>
+          </div>
+        </div>
+        <p class="philo-desc">Foucault asked who decides what counts as knowledge — and showed that knowledge and power are inseparable. Through archaeology of prisons, clinics, asylums, and sexuality, he traced how institutions define normality to control populations. His ideas on discourse, surveillance, and biopower became the grammar of critical theory worldwide.</p>
+        <span class="philo-idea">"Knowledge is not for knowing — it is for cutting"</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-title">Vive la France</p>
+  <p class="footer-sub">Liberté · Égalité · Fraternité</p>
+  <div class="flag-bar"></div>
+</footer>
+
+<script>
+// Hero particle canvas
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+let W, H;
+
+function resize() {
+  W = canvas.width = canvas.offsetWidth;
+  H = canvas.height = canvas.offsetHeight;
+}
+
+function createParticles() {
+  particles = [];
+  const count = Math.floor(W * H / 6000);
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      size: Math.random() * 2 + 0.3,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      opacity: Math.random() * 0.6 + 0.15,
+      color: Math.random() > 0.6 ? '#C9A84C' : Math.random() > 0.5 ? '#002395' : '#ED2939'
+    });
+  }
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#0D0A05';
+  ctx.fillRect(0, 0, W, H);
+
+  // Subtle vignette-like radial
+  const grad = ctx.createRadialGradient(W/2, H/2, H*0.1, W/2, H/2, H*0.8);
+  grad.addColorStop(0, 'rgba(201,168,76,0.04)');
+  grad.addColorStop(1, 'rgba(0,0,0,0.5)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = p.color + Math.floor(p.opacity * 255).toString(16).padStart(2,'0');
+    ctx.fill();
+
+    p.x += p.vx;
+    p.y += p.vy;
+    if (p.x < 0) p.x = W;
+    if (p.x > W) p.x = 0;
+    if (p.y < 0) p.y = H;
+    if (p.y > H) p.y = 0;
+  });
+
+  requestAnimationFrame(drawParticles);
+}
+
+resize();
+createParticles();
+drawParticles();
+window.addEventListener('resize', () => { resize(); createParticles(); });
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+reveals.forEach(el => observer.observe(el));
+
+// ── IMAGE LOADING via Wikipedia REST API ──────────────────────────────────
+// Maps each image element (by alt text) to a Wikipedia article title.
+// We fetch the page thumbnail from Wikipedia's summary endpoint (CORS-open).
+const IMG_MAP = {
+  // Hero
+  'Paris': 'Eiffel_Tower',
+  // Regions
+  'Provence lavender':   'Provence',
+  'Bretagne coast':      'Brittany',
+  'Alsace village':      'Alsace',
+  'Bourgogne vineyard':  'Burgundy_wine',
+  'Normandie':           'Mont-Saint-Michel',
+  'Paris Île-de-France': 'Paris',
+  // Arts figures
+  'Claude Monet':        'Claude_Monet',
+  'Simone de Beauvoir':  'Simone_de_Beauvoir',
+  'Édith Piaf':          'Édith_Piaf',
+  // Monuments
+  'La Tour Eiffel':        'Eiffel_Tower',
+  'Le Louvre':             'Louvre',
+  'Notre-Dame de Paris':   'Notre-Dame_de_Paris',
+  'Château de Versailles': 'Palace_of_Versailles',
+  'Arc de Triomphe':       'Arc_de_Triomphe',
+  'Mont-Saint-Michel':     'Mont-Saint-Michel',
+  'Pont du Gard':          'Pont_du_Gard',
+  'Le Panthéon':           'Panthéon,_Paris',
+  'La Sainte-Chapelle':    'Sainte-Chapelle',
+  // Philosophers
+  'René Descartes':        'René_Descartes',
+  'Voltaire':              'Voltaire',
+  'Jean-Jacques Rousseau': 'Jean-Jacques_Rousseau',
+  'Michel de Montaigne':   'Michel_de_Montaigne',
+  'Jean-Paul Sartre':      'Jean-Paul_Sartre',
+  'Simone de Beauvoir':    'Simone_de_Beauvoir',
+  'Blaise Pascal':         'Blaise_Pascal',
+  'Michel Foucault':       'Michel_Foucault',
+};
+
+// Beautiful CSS gradient fallbacks per image (shown while loading / on error)
+const FALLBACKS = {
+  'Paris':                 'linear-gradient(135deg,#0D0A05 0%,#2A1F0A 50%,#C9A84C22 100%)',
+  'Provence lavender':     'linear-gradient(135deg,#6B4FA0 0%,#9B6BB5 50%,#E8D5F5 100%)',
+  'Bretagne coast':        'linear-gradient(135deg,#0A2A4A 0%,#1A5276 50%,#85C1E9 100%)',
+  'Alsace village':        'linear-gradient(135deg,#4A0E0E 0%,#922B21 50%,#F1948A 100%)',
+  'Bourgogne vineyard':    'linear-gradient(135deg,#2E0F0F 0%,#7B241C 50%,#C0392B44 100%)',
+  'Normandie':             'linear-gradient(135deg,#0A1A2A 0%,#1A3A5A 50%,#AED6F1 100%)',
+  'Paris Île-de-France':   'linear-gradient(135deg,#0D0A05 0%,#2A1F0A 50%,#C9A84C22 100%)',
+  'Claude Monet':          'linear-gradient(135deg,#1A2A0A 0%,#2E7D32 50%,#A5D6A7 100%)',
+  'Simone de Beauvoir':    'linear-gradient(135deg,#1A0A2A 0%,#6A1B9A 50%,#CE93D8 100%)',
+  'Édith Piaf':            'linear-gradient(135deg,#2A0A0A 0%,#C62828 50%,#EF9A9A 100%)',
+  'La Tour Eiffel':        'linear-gradient(135deg,#0A1520 0%,#1B2A3A 60%,#C9A84C33 100%)',
+  'Le Louvre':             'linear-gradient(135deg,#1A1205 0%,#3D2B1F 60%,#C9A84C33 100%)',
+  'Notre-Dame de Paris':   'linear-gradient(135deg,#0A0F1A 0%,#1C2951 60%,#5D7FC155 100%)',
+  'Château de Versailles': 'linear-gradient(135deg,#1A1500 0%,#4A3C00 60%,#C9A84C44 100%)',
+  'Arc de Triomphe':       'linear-gradient(135deg,#100A00 0%,#2E2010 60%,#D4AC6044 100%)',
+  'Mont-Saint-Michel':     'linear-gradient(135deg,#0A1520 0%,#0E2240 60%,#85C1E955 100%)',
+  'Pont du Gard':          'linear-gradient(135deg,#1A1000 0%,#5D4E37 60%,#D7C49E55 100%)',
+  'Le Panthéon':           'linear-gradient(135deg,#0A0A0A 0%,#2C2C2C 60%,#9E9E9E33 100%)',
+  'La Sainte-Chapelle':    'linear-gradient(135deg,#0A0A2A 0%,#1A237E 40%,#E040FB44 100%)',
+  'René Descartes':        'linear-gradient(135deg,#1A0A2A,#4A1A6A)',
+  'Voltaire':              'linear-gradient(135deg,#1A1A0A,#4A4A1A)',
+  'Jean-Jacques Rousseau': 'linear-gradient(135deg,#0A1A0A,#1A4A1A)',
+  'Michel de Montaigne':   'linear-gradient(135deg,#1A0A0A,#4A2A0A)',
+  'Jean-Paul Sartre':      'linear-gradient(135deg,#0A0A1A,#1A1A4A)',
+  'Blaise Pascal':         'linear-gradient(135deg,#1A1A1A,#3A3A3A)',
+  'Michel Foucault':       'linear-gradient(135deg,#1A0A1A,#3A1A3A)',
+};
+
+const cache = {};
+
+async function fetchWikiThumb(title, width = 800) {
+  if (cache[title]) return cache[title];
+  try {
+    const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('bad response');
+    const data = await res.json();
+    const thumb = data.thumbnail?.source || data.originalimage?.source;
+    if (!thumb) throw new Error('no thumbnail');
+    cache[title] = thumb;
+    return thumb;
+  } catch(e) {
+    return null;
+  }
+}
+
+async function loadImages() {
+  const imgs = document.querySelectorAll('img[data-wiki-src], img[data-wiki]');
+  for (const img of imgs) {
+    const alt = img.getAttribute('alt') || '';
+    const wikiTitle = IMG_MAP[alt];
+
+    // Apply gradient fallback background immediately
+    const fallback = FALLBACKS[alt] || 'linear-gradient(135deg,#1A1209,#3A2A15)';
+    const wrap = img.parentElement;
+    if (wrap) wrap.style.background = fallback;
+
+    if (!wikiTitle) continue;
+
+    const src = await fetchWikiThumb(wikiTitle);
+    if (src) {
+      img.src = src;
+      img.style.opacity = '0';
+      img.onload = () => {
+        img.style.transition = 'opacity 0.6s ease';
+        img.style.opacity = '1';
+      };
+    } else {
+      // Hide img, let the gradient show
+      img.style.display = 'none';
+    }
+  }
+}
+
+loadImages();
+</script>
+</body>
+</html>
